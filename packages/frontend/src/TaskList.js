@@ -27,6 +27,12 @@ function TaskList({ onEdit }) {
     });
   };
 
+  const priorityColor = (p) => {
+    if (p === 'P1') return '#f44336';
+    if (p === 'P2') return '#ff9800';
+    return '#9e9e9e';
+  };
+
   const fetchTasks = async () => {
     try {
       setLoading(true);
@@ -220,6 +226,18 @@ function TaskList({ onEdit }) {
                   }}
                 />
               )}
+              <Chip
+                label={task.priority || 'P3'}
+                size="small"
+                data-testid={`priority-badge-${task.id}`}
+                sx={{
+                  height: 20,
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  background: priorityColor(task.priority || 'P3'),
+                  color: 'white',
+                }}
+              />
               <Box 
                 sx={{ 
                   display: 'flex', 
